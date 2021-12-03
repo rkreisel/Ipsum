@@ -17,16 +17,19 @@ public partial class IpsumMain : Form
     private static bool enableLogging = false;
     private static bool enableDebugging = false;
     private static string logFileName = "IpsumLog.txt";
+    private const string dateFormat = "yyyyMMdd-hhmmss.fff";
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     static extern bool AllocConsole();
 
+    private Viewer? viewer;
+
     public IpsumMain(string[] args)
     {
         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledException);
         var argList = ArgumentHelpers.ParseArgs(args, "=");
-        if(argList.ContainsKey("/h"))
+        if (argList.ContainsKey("/h"))
         {
             var msg = new StringBuilder();
             msg.AppendLine("Parameters");
@@ -48,7 +51,7 @@ public partial class IpsumMain : Form
         }
         InitializeComponent();
         ipsums = LoadIpsums();
-        if(argList.ContainsKey("/nh"))
+        if (argList.ContainsKey("/nh"))
         {
             MessageBox.Show("Keyboard hook not installed. Use the context menu of the Ipsum icon in the system tray to generate an ipsum.");
             ReportIt("Keystroke hook not installed");
@@ -57,7 +60,7 @@ public partial class IpsumMain : Form
         {
             InterceptKeys._hookID = InterceptKeys.SetHook(_proc);
         }
-    } 
+    }
 
     public static IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam)
     {
@@ -70,11 +73,11 @@ public partial class IpsumMain : Form
                 shiftCaught = true;
             if (vkCode == (int)InterceptKeys.IKEY)
                 iCaught = true;
-            if(ctrlCaught && shiftCaught && iCaught)
+            if (ctrlCaught && shiftCaught && iCaught)
             {
                 ReportIt("CRTL-Shift-I was caught.");
                 var ipsumText = GetRandomIpsum();
-                ReportIt($"Randon Ipsum:{Environment.NewLine}{ipsumText}");
+                ReportIt($"Randon Ipsum:{ipsumText}");
                 Clipboard.SetText(ipsumText);
                 ResetCaught();
             }
@@ -93,7 +96,7 @@ public partial class IpsumMain : Form
     private static void ReportIt(string message)
     {
         if (enableLogging)
-            File.AppendAllText(logFileName, message);
+            File.AppendAllText(logFileName, $"{DateTime.Now.ToString(dateFormat)}: {message}{Environment.NewLine}");
         if (enableDebugging)
             Console.Write(message);
     }
@@ -130,52 +133,67 @@ public partial class IpsumMain : Form
         return result;
     }
 
-    private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-    {
-
-    }
-
-    private void IpsumMain_FormClosing(object sender, FormClosingEventArgs e)
-    {
+    private void IpsumMain_FormClosing(object sender, FormClosingEventArgs e) =>
         InterceptKeys.UnhookWindowsHookEx(InterceptKeys._hookID);
-    }
 
     private void btnExport_Click(object sender, EventArgs e)
     {
         sfd.InitialDirectory = Application.StartupPath;
+        sfd.FileName = "Ipsums.txt";
         if (sfd.ShowDialog() == DialogResult.OK)
         {
+            ReportIt("Saving Ipsums");
             File.WriteAllText(sfd.FileName, string.Join(Environment.NewLine, ipsums));
         }
     }
 
     private void cmTrayIcon_DoubleClick(object sender, EventArgs e)
     {
-        Show();
+        this.Show();
         WindowState = FormWindowState.Normal;
     }
 
-    private void showIpsumWindowToolStripMenuItem_Click(object sender, EventArgs e)
-    {
+    private void showIpsumWindowToolStripMenuItem_Click(object sender, EventArgs e) =>
         cmTrayIcon_DoubleClick(sender, e);
-    }
 
-    private void exitIpsumToolStripMenuItem_Click(object sender, EventArgs e)
-    {
+    private void exitIpsumToolStripMenuItem_Click(object sender, EventArgs e) =>
         Application.ExitThread();
-    }
+    
 
     private void getRandomIpsumToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var msg = GetRandomIpsum();
+        ReportIt($"Random Ipsum:{Environment.NewLine}{msg}");
         Clipboard.SetText(msg);
-        MessageBox.Show(msg, "Ipsum", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        MessageBox.Show($"Ipsum copied to clipboard:{Environment.NewLine}{msg}", "Ipsum", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
     }
 
     private void IpsumMain_Resize(object sender, EventArgs e)
     {
-
         if (WindowState == FormWindowState.Minimized)
-            Hide();
+            this.Hide();
+    }
+
+    private void btnGetRandomIpsum_Click(object sender, EventArgs e) =>
+        getRandomIpsumToolStripMenuItem_Click(sender, e);
+
+    private void btnViewLog_Click(object sender, EventArgs e)
+    {
+        if(enableLogging)
+        {
+            ReportIt("Displaying log file contents.");
+            if (this.viewer == null || this.viewer.IsDisposed)
+            {
+                this.viewer = new Viewer();
+                viewer.Text = $"Ipsum Log Viewer - {logFileName}";
+            }
+            viewer.LoadText(File.ReadAllText(logFileName));
+            viewer.Show();
+        }
+        else
+        {
+            ReportIt("Cannot show log file. Logging is not enabled.");
+            MessageBox.Show("Logging not enabled. You can enable it with the 'l' command line argument.");
+        }
     }
 }
