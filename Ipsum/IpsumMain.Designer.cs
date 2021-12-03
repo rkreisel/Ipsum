@@ -37,15 +37,17 @@
             this.showIpsumWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getRandomIpsumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitIpsumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGetRandomIpsum = new System.Windows.Forms.Button();
+            this.btnViewLog = new System.Windows.Forms.Button();
             this.cmTrayIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(9, 5);
+            this.btnExport.Location = new System.Drawing.Point(9, 61);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(204, 23);
-            this.btnExport.TabIndex = 0;
+            this.btnExport.TabIndex = 3;
             this.btnExport.Text = "Export Current Ipsums";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
@@ -95,12 +97,35 @@
             this.exitIpsumToolStripMenuItem.Text = "Exit Ipsum";
             this.exitIpsumToolStripMenuItem.Click += new System.EventHandler(this.exitIpsumToolStripMenuItem_Click);
             // 
+            // btnGetRandomIpsum
+            // 
+            this.btnGetRandomIpsum.Location = new System.Drawing.Point(9, 7);
+            this.btnGetRandomIpsum.Name = "btnGetRandomIpsum";
+            this.btnGetRandomIpsum.Size = new System.Drawing.Size(204, 23);
+            this.btnGetRandomIpsum.TabIndex = 1;
+            this.btnGetRandomIpsum.Text = "Get Random Ipsum";
+            this.btnGetRandomIpsum.UseVisualStyleBackColor = true;
+            this.btnGetRandomIpsum.Click += new System.EventHandler(this.btnGetRandomIpsum_Click);
+            // 
+            // btnViewLog
+            // 
+            this.btnViewLog.Location = new System.Drawing.Point(9, 34);
+            this.btnViewLog.Name = "btnViewLog";
+            this.btnViewLog.Size = new System.Drawing.Size(204, 23);
+            this.btnViewLog.TabIndex = 2;
+            this.btnViewLog.Text = "View Log";
+            this.btnViewLog.UseVisualStyleBackColor = true;
+            this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
+            // 
             // IpsumMain
             // 
+            this.AcceptButton = this.btnGetRandomIpsum;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 32);
+            this.ClientSize = new System.Drawing.Size(218, 89);
+            this.Controls.Add(this.btnGetRandomIpsum);
             this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.btnViewLog);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IpsumMain";
             this.Text = "Ipsum";
@@ -120,5 +145,7 @@
         private ToolStripMenuItem showIpsumWindowToolStripMenuItem;
         private ToolStripMenuItem getRandomIpsumToolStripMenuItem;
         private ToolStripMenuItem exitIpsumToolStripMenuItem;
+        private Button btnGetRandomIpsum;
+        private Button btnViewLog;
     }
 }
