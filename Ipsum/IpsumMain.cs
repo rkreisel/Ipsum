@@ -125,7 +125,7 @@ public partial class IpsumMain : Form
             ipsumText = EX.AssemblyExtensions.GetTextFileFromAssembly(Assembly.GetExecutingAssembly(), "Data.DefaultIpsums.txt");
             ReportIt("Loading ipsums from embeded content.");
         }
-        var lines = ipsumText.Split("\r\n");
+        var lines = ipsumText.Split(Environment.NewLine);
         result.AddRange(lines);
         return result;
     }
