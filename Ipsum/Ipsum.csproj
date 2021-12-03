@@ -7,10 +7,15 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageIcon>Ipsum.jpg</PackageIcon>
+    <ApplicationIcon>Images\Ipsum.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Data\DefaultIpsums.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Ipsum.ico" />
   </ItemGroup>
 
   <ItemGroup>
