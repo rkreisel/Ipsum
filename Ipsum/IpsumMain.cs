@@ -149,17 +149,6 @@ public partial class IpsumMain : Form
         }
     }
 
-    private void btnExport_Resize(object sender, EventArgs e)
-    {
-        if (WindowState == FormWindowState.Minimized)
-            Hide();
-    }
-
-    private void cmTrayIcon_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-    {
-
-    }
-
     private void cmTrayIcon_DoubleClick(object sender, EventArgs e)
     {
         Show();
@@ -181,5 +170,12 @@ public partial class IpsumMain : Form
         var msg = GetRandomIpsum();
         Clipboard.SetText(msg);
         MessageBox.Show(msg, "Ipsum", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+    }
+
+    private void IpsumMain_Resize(object sender, EventArgs e)
+    {
+
+        if (WindowState == FormWindowState.Minimized)
+            Hide();
     }
 }

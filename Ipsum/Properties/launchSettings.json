@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Ipsum": {
-      "commandName": "Project",
-      "commandLineArgs": "/d"
+      "commandName": "Project"
     }
   }
 }

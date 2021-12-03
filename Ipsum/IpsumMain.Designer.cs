@@ -49,7 +49,6 @@
             this.btnExport.Text = "Export Current Ipsums";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            this.btnExport.Resize += new System.EventHandler(this.btnExport_Resize);
             // 
             // sfd
             // 
@@ -73,7 +72,6 @@
             this.exitIpsumToolStripMenuItem});
             this.cmTrayIcon.Name = "cmTrayIcon";
             this.cmTrayIcon.Size = new System.Drawing.Size(187, 70);
-            this.cmTrayIcon.Opening += new System.ComponentModel.CancelEventHandler(this.cmTrayIcon_Opening);
             this.cmTrayIcon.DoubleClick += new System.EventHandler(this.cmTrayIcon_DoubleClick);
             // 
             // showIpsumWindowToolStripMenuItem
@@ -103,9 +101,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(218, 32);
             this.Controls.Add(this.btnExport);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IpsumMain";
             this.Text = "Ipsum";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.IpsumMain_FormClosing);
+            this.Resize += new System.EventHandler(this.IpsumMain_Resize);
             this.cmTrayIcon.ResumeLayout(false);
             this.ResumeLayout(false);
 
