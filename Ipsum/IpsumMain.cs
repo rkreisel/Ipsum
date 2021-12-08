@@ -104,7 +104,7 @@ public partial class IpsumMain : Form
     private static string GetRandomIpsum()
     {
         Random r = new Random();
-        int rInt = r.Next(0, ipsums.Count());
+        int rInt = r.Next(0, ipsums.Count()-1);
         return ipsums[rInt];
     }
 
