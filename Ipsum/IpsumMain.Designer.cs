@@ -36,6 +36,8 @@
             this.cmTrayIcon = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showIpsumWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getRandomIpsumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitIpsumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGetRandomIpsum = new System.Windows.Forms.Button();
             this.btnViewLog = new System.Windows.Forms.Button();
@@ -72,28 +74,43 @@
             this.cmTrayIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showIpsumWindowToolStripMenuItem,
             this.getRandomIpsumToolStripMenuItem,
+            this.viewLogToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.exitIpsumToolStripMenuItem});
             this.cmTrayIcon.Name = "cmTrayIcon";
-            this.cmTrayIcon.Size = new System.Drawing.Size(187, 92);
+            this.cmTrayIcon.ShowImageMargin = false;
+            this.cmTrayIcon.Size = new System.Drawing.Size(162, 120);
             // 
             // showIpsumWindowToolStripMenuItem
             // 
             this.showIpsumWindowToolStripMenuItem.Name = "showIpsumWindowToolStripMenuItem";
-            this.showIpsumWindowToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.showIpsumWindowToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.showIpsumWindowToolStripMenuItem.Text = "Show Ipsum Window";
             this.showIpsumWindowToolStripMenuItem.Click += new System.EventHandler(this.showIpsumWindowToolStripMenuItem_Click);
             // 
             // getRandomIpsumToolStripMenuItem
             // 
             this.getRandomIpsumToolStripMenuItem.Name = "getRandomIpsumToolStripMenuItem";
-            this.getRandomIpsumToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.getRandomIpsumToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.getRandomIpsumToolStripMenuItem.Text = "Get Random Ipsum";
             this.getRandomIpsumToolStripMenuItem.Click += new System.EventHandler(this.getRandomIpsumToolStripMenuItem_Click);
+            // 
+            // viewLogToolStripMenuItem
+            // 
+            this.viewLogToolStripMenuItem.Name = "viewLogToolStripMenuItem";
+            this.viewLogToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.viewLogToolStripMenuItem.Text = "View Log";
+            this.viewLogToolStripMenuItem.Click += new System.EventHandler(this.viewLogToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 6);
             // 
             // exitIpsumToolStripMenuItem
             // 
             this.exitIpsumToolStripMenuItem.Name = "exitIpsumToolStripMenuItem";
-            this.exitIpsumToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.exitIpsumToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.exitIpsumToolStripMenuItem.Text = "Exit Ipsum";
             this.exitIpsumToolStripMenuItem.Click += new System.EventHandler(this.exitIpsumToolStripMenuItem_Click);
             // 
@@ -147,5 +164,7 @@
         private ToolStripMenuItem exitIpsumToolStripMenuItem;
         private Button btnGetRandomIpsum;
         private Button btnViewLog;
+        private ToolStripMenuItem viewLogToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem2;
     }
 }

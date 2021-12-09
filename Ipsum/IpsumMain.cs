@@ -196,4 +196,7 @@ public partial class IpsumMain : Form
         this.Show();
         WindowState = FormWindowState.Normal;
     }
+
+    private void viewLogToolStripMenuItem_Click(object sender, EventArgs e) =>    
+        btnViewLog_Click(sender, e);    
 }
