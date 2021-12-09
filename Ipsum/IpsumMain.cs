@@ -153,13 +153,14 @@ public partial class IpsumMain : Form
     private void exitIpsumToolStripMenuItem_Click(object sender, EventArgs e) =>
         Application.ExitThread();
     
-
     private void getRandomIpsumToolStripMenuItem_Click(object sender, EventArgs e)
     {
         var msg = GetRandomIpsum();
         ReportIt($"Random Ipsum:{Environment.NewLine}{msg}");
         Clipboard.SetText(msg);
         MessageBox.Show($"Ipsum copied to clipboard:{Environment.NewLine}{msg}", "Ipsum", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        if (enableLogging)
+            btnViewLog_Click(sender, e);
     }
 
     private void IpsumMain_Resize(object sender, EventArgs e)
