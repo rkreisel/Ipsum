@@ -147,14 +147,8 @@ public partial class IpsumMain : Form
         }
     }
 
-    private void cmTrayIcon_DoubleClick(object sender, EventArgs e)
-    {
-        this.Show();
-        WindowState = FormWindowState.Normal;
-    }
-
     private void showIpsumWindowToolStripMenuItem_Click(object sender, EventArgs e) =>
-        cmTrayIcon_DoubleClick(sender, e);
+        trayIcon_MouseDoubleClick(sender, (MouseEventArgs) e);
 
     private void exitIpsumToolStripMenuItem_Click(object sender, EventArgs e) =>
         Application.ExitThread();
@@ -195,5 +189,11 @@ public partial class IpsumMain : Form
             ReportIt("Cannot show log file. Logging is not enabled.");
             MessageBox.Show("Logging not enabled. You can enable it with the 'l' command line argument.");
         }
+    }
+
+    private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        this.Show();
+        WindowState = FormWindowState.Normal;
     }
 }

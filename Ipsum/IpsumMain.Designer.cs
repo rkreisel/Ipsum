@@ -65,6 +65,7 @@
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
             this.trayIcon.Text = "Ipsum";
             this.trayIcon.Visible = true;
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
             // 
             // cmTrayIcon
             // 
@@ -73,8 +74,7 @@
             this.getRandomIpsumToolStripMenuItem,
             this.exitIpsumToolStripMenuItem});
             this.cmTrayIcon.Name = "cmTrayIcon";
-            this.cmTrayIcon.Size = new System.Drawing.Size(187, 70);
-            this.cmTrayIcon.DoubleClick += new System.EventHandler(this.cmTrayIcon_DoubleClick);
+            this.cmTrayIcon.Size = new System.Drawing.Size(187, 92);
             // 
             // showIpsumWindowToolStripMenuItem
             // 
