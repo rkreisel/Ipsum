@@ -159,8 +159,6 @@ public partial class IpsumMain : Form
         ReportIt($"Random Ipsum:{Environment.NewLine}{msg}");
         Clipboard.SetText(msg);
         MessageBox.Show($"Ipsum copied to clipboard:{Environment.NewLine}{msg}", "Ipsum", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        if (enableLogging)
-            btnViewLog_Click(sender, e);
     }
 
     private void IpsumMain_Resize(object sender, EventArgs e)
